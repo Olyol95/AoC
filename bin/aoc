@@ -1,0 +1,58 @@
+#!/usr/bin/env perl
+
+use Modern::Perl;
+
+use Carp;
+use Getopt::Long;
+
+use AoC::Solutions;
+
+my ($year, $day, $input_file, $output_file, $verbose);
+GetOptions(
+    'y|year=i'          => \$year,
+    'd|day=i'           => \$day,
+    'i|input-file=s'    => \$input_file,
+    'o|output-file=s'   => \$output_file,
+    'v|verbose'         => \$verbose,
+);
+
+$ENV{VERBOSE} = $verbose;
+
+croak "No year specified"       unless $year;
+croak "No day specified"        unless $day;
+croak "No input file specified" unless $input_file;
+
+open( my $input_fh, '<', $input_file )
+    or croak "Error reading input: $!";
+my @input = <$input_fh>;
+chomp( @input );
+close( $input_fh );
+
+my $solutions = AoC::Solutions->new;
+
+my $part_1 = $solutions->solve(
+    $year,
+    $day,
+    1,
+    join( '', @input ),
+);
+
+my $part_2 = $solutions->solve(
+    $year,
+    $day,
+    2,
+    join( '', @input ),
+);
+
+if ($output_file) {
+    open( my $output_fh, '>', $output_file ) 
+        or croak "Error writing output: $!";
+    print( $output_fh, "$part_1\n\n$part_2" );
+    close( $output_fh );
+}
+else {
+    print( "Solution to day $day part 1:\n" ) if $verbose;
+    print( $part_1 . "\n" );
+    print( "Solution to day $day part 2:\n" ) if $verbose;
+    print( $part_2 . "\n" );
+}
