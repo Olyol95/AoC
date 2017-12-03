@@ -24,8 +24,11 @@ croak "No input file specified" unless $input_file;
 
 open( my $input_fh, '<', $input_file )
     or croak "Error reading input: $!";
-my @input = <$input_fh>;
-chomp( @input );
+my @input;
+while (my $line = <$input_fh>) {
+    chomp( $line );
+    push @input, $line;
+}
 close( $input_fh );
 
 my $solutions = AoC::Solutions->new;
@@ -34,14 +37,14 @@ my $part_1 = $solutions->solve(
     $year,
     $day,
     1,
-    join( '', @input ),
+    \@input
 );
 
 my $part_2 = $solutions->solve(
     $year,
     $day,
     2,
-    join( '', @input ),
+    \@input,
 );
 
 if ($output_file) {

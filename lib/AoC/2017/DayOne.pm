@@ -8,7 +8,7 @@ sub part_1 {
     my ($self, $input) = @_;
     
     my $count = 0;
-    my @digits = split( //, $input );
+    my @digits = split( //, $input->[0] );
 
     for (my $index = 0; $index < @digits; $index++) {
         my $prev_index = $index ? $index - 1 : scalar(@digits) - 1;
@@ -25,7 +25,7 @@ sub part_2 {
     my ($self, $input) = @_;
 
     my $count = 0;
-    my @digits = split( //, $input );
+    my @digits = split( //, $input->[0] );
 
     my $step = @digits / 2;
     for (my $index = 0; $index < @digits; $index ++) {
