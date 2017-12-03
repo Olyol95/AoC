@@ -6,6 +6,7 @@ use Carp;
 use Switch;
 
 use AoC::2017::DayOne;
+use AoC::2017::DayTwo;
 
 has 'verbose' => (
     isa => 'Int',
@@ -23,6 +24,7 @@ sub BUILD {
     my ($self, $args) = @_;
 
     push @{ $self->solutions->{2017} }, AoC::2017::DayOne->new;
+    push @{ $self->solutions->{2017} }, AoC::2017::DayTwo->new;
 }
 
 sub solve {
