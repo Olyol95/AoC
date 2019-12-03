@@ -2,7 +2,7 @@ test-all:
 	prove -l t/*/*.t
 
 test-single:
-	PERL5LIB=PERL5LIB:lib prove -l t/${YEAR}/${DAY}.t
+	PERL5LIB=PERL5LIB:lib TEST=1 prove -l t/${YEAR}/${DAY}.t
 
 run: test-single run-oneoff
 

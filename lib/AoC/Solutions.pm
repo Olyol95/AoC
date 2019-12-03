@@ -10,6 +10,7 @@ use AoC::2017::DayTwo;
 use AoC::2017::DayThree;
 
 use AoC::2019::DayOne;
+use AoC::2019::DayTwo;
 
 has 'verbose' => (
     isa => 'Int',
@@ -31,6 +32,7 @@ sub BUILD {
     push @{ $self->solutions->{2017} }, AoC::2017::DayThree->new;
 
     push @{ $self->solutions->{2019} }, AoC::2019::DayOne->new;
+    push @{ $self->solutions->{2019} }, AoC::2019::DayTwo->new;
 }
 
 sub solve {
